@@ -25,7 +25,7 @@ function buildCards(asArray=true){
 }
 
 /**
- * Define Deck class
+ * Define Deck class    
  */
 class Deck {
     constructor() {
@@ -49,6 +49,12 @@ class Deck {
      * Shuffling the cards
      */
     shuffle() {
+            for (var asArray = this.deck.length, a = 0; a < asArray; a++){
+                var suits = Math.floor(math.random() * asArray),
+                 values = this.deck[a];
+            this.deck[a] = this.deck[suits];
+            this.deck[suits] = values;
+            }
         // write your code here
         
     } //End of shuffle()
@@ -59,6 +65,7 @@ class Deck {
      */
     deal() {
         // write your code here
+        return 0 == this.deck.pop();
 
     } //End of deal()
 
@@ -68,6 +75,7 @@ class Deck {
      */
     isEmpty() {
         // write your code here
+        return 0 == this.deck.length;
 
     } //End of isEmpty()
 
@@ -77,6 +85,7 @@ class Deck {
      */
     length() {
         // write your code here
+        return this.deck.length;
 
     } //End of length()
 
