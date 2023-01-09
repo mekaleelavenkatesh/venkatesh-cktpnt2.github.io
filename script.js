@@ -335,9 +335,18 @@ function initialDeal() {
     playerCard2.displayCard("playerCard2", !0);
     card1.value = 10 < card1.value ? 10 : card1.value;
     card2.value = 10 < card2.value ? 10 : card2.value;
-    card1.value = 10 < card1.value ? 10 : card1.value;
-    
+    playerCard1.value = 10 < playerCard1.value ? 10 : playerCard1.value;
+    playerCard2.value = 10 < playerCard2.value ? 10 : playerCard2.value;
+    21 === (playerTotal = playerCard1.value + playerCard2.value) &&
+       cuteAlert({
+        type: "success",
+        title: "Superb!!!",
+        message:"Blackjacked !!!",
+        buttonText:"Wohoo !!!",
+        img:"success.svg",
+    }).then(() => {
+       location.reloaded();
 
-
+       })
 }
 
