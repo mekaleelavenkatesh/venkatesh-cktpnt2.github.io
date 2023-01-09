@@ -205,6 +205,28 @@ function stand() {
     // Checking Dealer and Player score - to give the result using cuteAlerts (just like the alert in initialDeal function)
 
     // write your code here
+    card2.flip();
+    dealerTotal = card1.value  + card2.value;
+    (playertotal >= dealerTotal
+       ? cuteAlert({
+        type: "success",
+        title: "congratulations !!!",
+        message:"You Won the Game",
+        buttonText:"Yayy !",
+        img:"success.svg",
+       })
+       : cuteAlert({
+        type: "error",
+        title: "oh No !!!",
+        message:"Dealer Won the Game",
+        buttonText:"ok :(",
+        img:"success.svg",
+
+       })
+       
+        ).then(() => {
+            location.reload();
+       });
 
 }
 
@@ -215,7 +237,53 @@ let extraCnt = 0;
  * function which deals extra playercards - Max. 2 cards
  */
 function hit() {
-    let dealButton = document.getElementById("deal");
+    var e = document.getElementById("deal");
+    playerCard3 = new Card(deck.deal());
+    playerCard4 = new Card(deck.deal());
+    if (0 === extraCnt) {
+        playerCard3.displayCard("playercard3",!0);
+        playerCard3.value = 10 < playerCard3.value ? 10 : playerCard3.value;
+        playertotal += playerCard3.value;
+    } else  if (1 === extraCnt) {
+        playerCard4.displayCard("playercard4",!0);
+        playerCard4.value = 10 < playerCard4.value ? 10 : playerCard4.value;
+        playertotal += playerCard4.value;
+    }else {
+        e.style.display = "none";
+        cuteAlert({
+        type: "warning",
+        title: "sorry...",
+        message:"Max. cards dealed",
+        buttonText:"ok",
+        img:"warning.svg",
+
+        });
+    }
+    if(21 < playertotal){
+        cuteAlert({
+            type: "error",
+        title: "Busted...",
+        message:"You lost the Game",
+        buttonText:"ok :(",
+        img:"error.svg",
+        }).then(() => {
+            location.reload();
+
+        });
+        e.style.display ="none";
+    } else
+    21 === playerTotal &&
+      cuteAlert({
+        type: "success",
+        title: "superb!!!",
+        message:"blackjacked !!!",
+        buttonText:"Wohoo !!!",
+        img:"success.svg",
+      }).then(() => {
+        location.reload();
+      });
+extraCnt++;
+
 
     // Dealing the extra cards that the player requests
 
@@ -252,4 +320,24 @@ function hit() {
 /**
  * Initial Deal
  */
-initialDeal();
+function initialDeal() {
+    if (deck.length() < 7){
+        deck.reset();
+        deck.shuffle();
+    }
+    card1 = new Card(deck.deal());
+    card2 = new Card(deck.deal());
+    playerCard1 = new Card(deck.deal());
+    playerCard2 = new Card(deck.deal());
+    card1.displayCard("card1", !0);
+    card2.displayCard("card2", !0);
+    playerCard1.displayCard("playerCard1", !0);
+    playerCard2.displayCard("playerCard2", !0);
+    card1.value = 10 < card1.value ? 10 : card1.value;
+    card2.value = 10 < card2.value ? 10 : card2.value;
+    card1.value = 10 < card1.value ? 10 : card1.value;
+    
+
+
+}
+
