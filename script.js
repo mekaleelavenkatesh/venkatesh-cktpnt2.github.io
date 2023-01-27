@@ -69,7 +69,7 @@ function buildCards(asArray = true) {
      * @returns {Boolean} True or False
      */
     isEmpty() {
-      return 0 == this.deck.length;
+        this.deck.length == 0;
   
       // write your code here
     } //End of isEmpty()
